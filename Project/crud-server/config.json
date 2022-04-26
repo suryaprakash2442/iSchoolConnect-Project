@@ -1,0 +1,6 @@
+{
+    "cloudDB" : "mongodb+srv://admin:im41tb24@mycluster.a29mj.mongodb.net/onlineDB?retryWrites=true&w=majority",
+    "localDB" : "mongodb://localhost:27017/iSchoolDB",
+    "port" : "5050",
+    "host" : "localhost"
+}
