@@ -1,0 +1,39 @@
+
+
+mat-form-field {
+    width: 100%;
+    
+}
+
+.titles{
+    display: block;
+}
+
+select{
+    width: 100%;
+
+}
+
+.expand{
+    margin-bottom: 10px;
+}
+
+mat-expansion-panel-header{
+    padding-top: 10px;
+    background-color: slategray;
+}
+
+.updates1, .updates2{
+    margin-right: 10px;
+}
+
+.inner-text{
+    margin-bottom: 5px;
+}
+
+.admbtn{
+    align-self: center;
+    width: 80px;
+    margin-bottom: 5px;
+}
+

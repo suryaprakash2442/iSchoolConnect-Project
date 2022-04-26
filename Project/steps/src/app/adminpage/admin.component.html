@@ -1,0 +1,138 @@
+<mat-card>
+    <h1 style="font-weight: 1000;">Add Order :</h1>
+    <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+        
+        <div id="dropDown" class="form-group">
+            <strong class="titles">Select Type of Clothing: </strong>  
+            <select
+            matInput 
+            name="clothType"
+            [(ngModel)]="clothType"
+            required
+            #type="ngModel">
+            <option value="Shirt">Shirt</option>
+            <option value="Pants">Pants</option>
+            <option value="Other">Other</option>
+            </select>
+            
+        </div>
+        <br>
+        
+        <div id="dropDown" class="form-group">
+            <strong class="titles">Select Color Type : </strong> 
+            <select
+            matInput 
+            name="clothColor" 
+            [(ngModel)]="clothColor"
+            required
+            #color="ngModel">
+            <option value="Whites" selected>Whites</option>
+            <option value="Non-Whites">Non-Whites</option>
+            </select>
+        
+            
+        </div>
+        <mat-form-field>
+            <input
+            matInput 
+            type="number" 
+            name="clothCount" 
+            [(ngModel)]="clothCount"
+            required
+            placeholder="Enter Number Of Clothes"
+            #count="ngModel">
+            <mat-error *ngIf="count.invalid">Please Enter Number of Clothes</mat-error>
+        </mat-form-field>
+        
+        <br>
+        <!-- <div >
+            <p *ngIf="curUser$ |async as user">
+                {{user.displayName}}
+            </p>
+        </div> -->
+        
+
+        <button 
+        [disabled]="!clothCount"
+        (click)="createRecord()"
+        mat-raised-button
+        color="accent" 
+        
+        type="submit">Add Batch</button>    
+        <div class="form-group">
+            <h4><b>{{message}}</b></h4>
+        </div>
+    </form>
+</mat-card>
+
+<br>
+
+
+<mat-card>
+<div class="row p-2">
+    <div class="col-md-12 p-3 justify-content-center">
+        <h1><strong> Orders List : </strong></h1>
+        <!-- <h1 *ngIf="curUser$ |async as user">{{user.displayName}}!</h1> -->
+
+
+    </div>
+    
+    <div *ngFor ="let item of cloth">
+        <div>
+        
+        <div class="card" *ngIf="!item.isEdit; else elseBlock">
+            <div class="card-body">
+
+                <div class="card-title">
+                    <strong>ID :</strong>  {{item.id}}
+                </div>
+                <div class="card-title">
+                    <strong>Type : </strong>{{item.type}}
+                </div>
+                <div class="card-subtitle">
+                    <strong>Color : </strong>{{item.color}}
+                </div>
+                <div class="card-text">
+                   <strong>Count : </strong>{{item.count}}
+                </div>
+                <div class="card-text">
+                   <strong>Status : </strong>{{item.status}}
+                </div>
+                <!-- <div  class="card-text">
+                   <strong>User : </strong>{{item.user}}
+                </div> -->
+                
+                <span>
+                    <button href="#" type="button" (click)="editRecord(item)" class="admbtn btn btn-primary btn-xs">Edit</button>
+                    <button href="#" type="button" (click)="deleteRecord(item.id)" class=" admbtn btn btn-danger btn-xs">Delete</button>
+                    <!-- *ngIf="item.status == 'Washing'" -->
+                </span>
+            </div>
+        </div>
+        </div>
+        <ng-template #elseBlock>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title">
+                        Edit Employee
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            
+                            <div class="col-md-12">
+                                <select type="text" [(ngModel)]="item.editStatus" class="form-control">
+                                    <option value="Washing">Washing</option>
+                                    <option value="Ironing">Ironing</option>
+                                    <option value="Ready for Pickup">Ready for Pickup</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button href="#" type="button" class="btn btn-danger btn-xs" (click)="item.isEdit = false">Cancel</button>
+                    <button href="#" type="submit" class="btn btn-primary btn-xs" (click)="updateRecord(item)">Update Record</button>
+                    
+                </div>
+            </div>
+        </ng-template>
+        
